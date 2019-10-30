@@ -2,6 +2,7 @@
 import pandas as pd
 from math import *
 import csv
+
 def MyKNN(K,a):
     print('Entering')
     Distance=[]
@@ -25,8 +26,8 @@ def MyKNN(K,a):
             Distance=Distance+[sum2]
 
         break
-    #print(Distance)
-    #print(len(Distance))
+   
+
     csv_f=open('/home/ankita/Desktop/Python files/Titanic/train_new.csv','w')
     csv_wr=csv.writer(csv_f)
     csv_rd=csv.reader(open('/home/ankita/Desktop/Python files/Titanic/train.csv'));
@@ -35,15 +36,15 @@ def MyKNN(K,a):
         #print(row)
         if i>0:
           csv_wr.writerow(row+[Distance[i-1][0]])
-          #print(row+[Distance[i-1][0]])
         else:
           csv_wr.writerow(row+['Distance'])
-          #print(row+['Distance'])
         i=i+1
+        
     csv_f.close()
     countY=countN=0
     sort_train_new=pd.read_csv('/home/ankita/Desktop/Python files/Titanic/train_new.csv')
     sort_save=sort_train_new.sort_values('Distance')
+    
     for k,rowk in sort_save.iloc[:K].iterrows():
         print(rowk['Survived'])
         if(rowk['Survived']==1):
